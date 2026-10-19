@@ -92,8 +92,8 @@ export const Lead: React.FC<{ children: React.ReactNode; step?: number; delay?: 
   children,
   step = 0,
   delay = 10,
-  y = 200,
-  size = 34,
+  y = 172,
+  size = 38,
   w = 1720,
 }) => (
   <At x={96} y={y} w={w} step={step} delay={delay} size={size} weight={700}>

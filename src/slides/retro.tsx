@@ -39,7 +39,7 @@ export const Win: React.FC<{
       {[0, 1, 2].map((i) => (
         <span key={i} style={{ width: 8, height: 8, borderRadius: 4, background: border }} />
       ))}
-      {tag && <span style={{ marginLeft: "auto", fontFamily: F.mono, fontSize: 15, fontWeight: 700, color: border }}>{tag}</span>}
+      {tag && <span style={{ marginLeft: "auto", fontFamily: F.mono, fontSize: 20, fontWeight: 700, color: border }}>{tag}</span>}
     </div>
     {title !== undefined && (
       <div style={{ padding: "8px 20px", borderBottom: `2px solid ${border}`, fontFamily: F.head, fontSize: 26, color: titleColor, whiteSpace: "nowrap" }}>{title}</div>
@@ -212,7 +212,7 @@ export const Term: React.FC<{
   step: number;
   p?: number;
   size?: number;
-}> = ({ x, y, w, h, title = "swipl", lines, step, p = 1, size = 28 }) => {
+}> = ({ x, y, w, h, title = "swipl", lines, step, p = 1, size = 31 }) => {
   const { t, frame } = useSteps();
   const shown = lines.filter((l) => t(l.step ?? step, l.at) >= 0);
   const last = shown[shown.length - 1];

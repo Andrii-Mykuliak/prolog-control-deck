@@ -49,7 +49,7 @@ const GoalStack: React.FC = () => {
                 borderRadius: 4,
                 fontFamily: F.mono,
                 fontWeight: 700,
-                fontSize: 25,
+                fontSize: 29,
                 color: i === 0 ? C.amber : C.text,
                 background: i === 0 ? "rgba(242,193,78,0.12)" : undefined,
                 opacity: clamp01(pop),
@@ -64,15 +64,15 @@ const GoalStack: React.FC = () => {
       </Win>
       <Win x={1500} y={320} w={324} h={460} title="зв’язування" titleColor={C.mint} p={s(1, 26, POP)}>
         {fr.binds.map((b) => (
-          <div key={b} style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 26, color: C.mint, lineHeight: 1.8 }}>
+          <div key={b} style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 30, color: C.mint, lineHeight: 1.8 }}>
             {b}
           </div>
         ))}
       </Win>
-      <At x={1000} y={800} w={824} step={2} size={24} weight={600} color={C.dim}>
+      <At x={1000} y={800} w={824} step={2} size={29} weight={700} color={C.dim}>
         {fr.note}
       </At>
-      <At x={96} y={880} w={1720} step={3} size={28} weight={700}>
+      <At x={96} y={880} w={1720} step={3} size={32} weight={700}>
         Що глибший стек і що більше зайвих підцілей, то більше роботи й бектрекінгу: порядок правил і підцілей впливає на ефективність.
       </At>
     </Slide>
@@ -149,7 +149,7 @@ const Cut: React.FC = () => {
               justifyContent: "center",
               fontFamily: F.mono,
               fontWeight: 700,
-              fontSize: 24,
+              fontSize: 28,
               color: pr && cut > 0.5 ? C.red : C.text,
               textDecoration: pr && cut > 0.5 ? "line-through" : undefined,
               opacity: clamp01(s(1, i * 5, POP)) * (pr ? mix(1, 0.55, cut) : 1),
@@ -161,11 +161,11 @@ const Cut: React.FC = () => {
       })}
       {scissors((CT[1].x + CT[4].x) / 2 + 10, (CT[1].y + CT[4].y) / 2, 6)}
       {scissors((CT[0].x + CT[2].x) / 2 + 10, (CT[0].y + CT[2].y) / 2, 14)}
-      <At x={96} y={880} w={1720} step={3} size={28} weight={700}>
+      <At x={96} y={880} w={1720} step={3} size={32} weight={700}>
         Відсікання підвищує ефективність, обмежує простір пошуку й дає змогу керувати логікою програми.
       </At>
       {t(2, 0) >= 0 && (
-        <At x={1100} y={640} w={640} step={2} delay={20} size={26} weight={600} color={C.red}>
+        <At x={1100} y={640} w={640} step={2} delay={20} size={30} weight={700} color={C.red}>
           після ! ці гілки вже не розглядаються
         </At>
       )}
@@ -178,7 +178,7 @@ const GreenRed: React.FC = () => {
   const { s } = useSteps();
   const items = (arr: string[], color: string, step: number) =>
     arr.map((it, i) => (
-      <div key={it} style={{ display: "flex", gap: 14, fontFamily: F.body, fontWeight: 500, fontSize: 33, lineHeight: 1.4, color: C.text, marginBottom: 24, opacity: clamp01(s(step, 10 + i * 8)) }}>
+      <div key={it} style={{ display: "flex", gap: 14, fontFamily: F.body, fontWeight: 700, fontSize: 35, lineHeight: 1.4, color: C.text, marginBottom: 24, opacity: clamp01(s(step, 10 + i * 8)) }}>
         <span style={{ color, fontFamily: F.pixel, fontSize: 18, marginTop: 6 }}>●</span>
         <span>{it}</span>
       </div>
@@ -191,7 +191,7 @@ const GreenRed: React.FC = () => {
       <Win x={974} y={210} w={850} h={500} title="Червоне відсікання" titleColor={C.red} border={C.red} p={s(2, 0, POP)}>
         {items(["Змінює поведінку програми.", "Без нього програма повертала б інші результати.", "Керує логікою, обмежує пошук.", "Дає «ранній вихід» із предиката."], C.red, 2)}
       </Win>
-      <At x={96} y={780} w={1720} step={3} size={32} weight={700}>
+      <At x={96} y={780} w={1720} step={3} size={34} weight={700}>
         Перевірка проста: приберіть відсікання. Якщо набір відповідей не змінився – воно зелене, якщо змінився – червоне.
       </At>
     </Slide>
@@ -207,7 +207,7 @@ const GreenCut: React.FC = () => {
         <Code
           x={0}
           y={0}
-          size={25}
+          size={29}
           step={1}
           delay={6}
           stagger={4}
@@ -226,7 +226,7 @@ const GreenCut: React.FC = () => {
         <Code
           x={0}
           y={0}
-          size={25}
+          size={29}
           step={2}
           delay={6}
           stagger={4}
@@ -243,12 +243,12 @@ const GreenCut: React.FC = () => {
       </Win>
       <Term
         x={96}
-        y={640}
+        y={626}
         w={850}
-        h={220}
+        h={256}
         step={3}
         p={s(3, 0, POP)}
-        size={26}
+        size={30}
         lines={[
           { text: "?- factorial(0, R).", at: 0 },
           { text: "R = 1 ;", at: 26 },
@@ -257,18 +257,18 @@ const GreenCut: React.FC = () => {
       />
       <Term
         x={974}
-        y={640}
+        y={626}
         w={850}
-        h={220}
+        h={256}
         step={3}
         p={s(3, 6, POP)}
-        size={26}
+        size={30}
         lines={[
           { text: "?- factorial(0, R).", at: 6 },
           { text: "R = 1.", at: 32 },
         ]}
       />
-      <At x={96} y={900} w={1720} step={4} size={28} weight={700}>
+      <At x={96} y={910} w={1720} step={4} size={30} weight={700}>
         Відповідь та сама – <M>R = 1</M>. Без відсікання Prolog ще пробує друге правило й марно перевіряє <M>0 &gt; 0</M>; відсікання прибирає цю точку вибору, тому воно зелене.
       </At>
     </Slide>
@@ -284,7 +284,7 @@ const RedCut: React.FC = () => {
       <Code
         x={96}
         y={330}
-        size={28}
+        size={31}
         step={1}
         delay={20}
         stagger={10}
@@ -300,7 +300,7 @@ const RedCut: React.FC = () => {
         h={340}
         step={2}
         p={s(2, 0, POP)}
-        size={26}
+        size={30}
         lines={[
           { text: "?- дільник(12, D).", at: 0 },
           { text: "D = 2 ; D = 3 ; D = 4 ;", at: 26 },
@@ -314,13 +314,13 @@ const RedCut: React.FC = () => {
         h={340}
         step={3}
         p={s(3, 0, POP)}
-        size={26}
+        size={30}
         lines={[
           { text: "?- перший_дільник(12, D).", at: 0 },
           { text: "D = 2.", at: 26, color: C.red },
         ]}
       />
-      <At x={96} y={860} w={1720} step={4} size={28} weight={700}>
+      <At x={96} y={860} w={1720} step={4} size={32} weight={700}>
         Без відсікання – усі дільники, з ним – лише перший. Відсікання змінило набір відповідей, тому воно <A c={C.red}>червоне</A>.
       </At>
     </Slide>
@@ -347,7 +347,7 @@ const CutUses: React.FC = () => {
         const x = row === 0 ? 96 + col * 878 : 96 + col * 586;
         return (
           <Win key={u.t} x={x} y={200 + row * 360} w={w} h={320} title={u.t} titleColor={[C.pink, C.lav, C.amber, C.mint, C.orange][i]} tag={`0${i + 1}`} p={s(1, i * 10, POP)}>
-            <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 27, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>{u.c}</div>
+            <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 30, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>{u.c}</div>
           </Win>
         );
       })}
@@ -361,18 +361,18 @@ const CutOnce: React.FC = () => {
   return (
     <Slide title="! і once/1">
       <Win x={96} y={200} w={850} h={430} title="!" titleColor={C.red} p={s(1, 0, POP)}>
-        <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 28, lineHeight: 1.45, color: C.text }}>
+        <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 32, lineHeight: 1.45, color: C.text }}>
           Обрізає всі попередні точки бектрекінгу в поточному правилі. Сильніше впливає на логіку програми й може дати несподівані результати.
         </div>
-        <div style={{ marginTop: 22, fontFamily: F.mono, fontWeight: 700, fontSize: 25, color: C.mint, whiteSpace: "pre" }}>{"?- member(X, [a, b, c]), !.\nX = a."}</div>
+        <div style={{ marginTop: 22, fontFamily: F.mono, fontWeight: 700, fontSize: 29, color: C.mint, whiteSpace: "pre" }}>{"?- member(X, [a, b, c]), !.\nX = a."}</div>
       </Win>
       <Win x={974} y={200} w={850} h={430} title="once/1" titleColor={C.lav} p={s(2, 0, POP)}>
-        <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 28, lineHeight: 1.45, color: C.text }}>
+        <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 32, lineHeight: 1.45, color: C.text }}>
           Виконує ціль-аргумент і повертає лише перший розв’язок. Явно показує, що саме виконується один раз, тому передбачуваніший.
         </div>
-        <div style={{ marginTop: 22, fontFamily: F.mono, fontWeight: 700, fontSize: 25, color: C.mint, whiteSpace: "pre" }}>{"?- once(member(X, [a, b, c])).\nX = a."}</div>
+        <div style={{ marginTop: 22, fontFamily: F.mono, fontWeight: 700, fontSize: 29, color: C.mint, whiteSpace: "pre" }}>{"?- once(member(X, [a, b, c])).\nX = a."}</div>
       </Win>
-      <At x={96} y={700} w={1720} step={3} size={30} weight={700}>
+      <At x={96} y={700} w={1720} step={3} size={34} weight={700}>
         Обидва обмежують бектрекінг, але <M>once/1</M> діє лише на свій аргумент, а <M c={C.red}>!</M> – на все правило до місця відсікання.
       </At>
     </Slide>
@@ -412,12 +412,12 @@ const CtrlPreds: React.FC = () => {
             }}
           >
             <div style={{ position: "absolute", left: COLS[0] - 96, top: 0, height: 112, display: "flex", alignItems: "center", fontFamily: F.mono, fontWeight: 700, fontSize: 30, color: C.pink }}>{r.p}</div>
-            <div style={{ position: "absolute", left: COLS[1] - 96, width: 660, top: 0, height: 112, display: "flex", alignItems: "center", fontFamily: F.body, fontWeight: 500, fontSize: 26, color: C.text, lineHeight: 1.3 }}>{r.d}</div>
-            <div style={{ position: "absolute", left: COLS[2] - 96, top: 0, height: 112, display: "flex", alignItems: "center", fontFamily: F.mono, fontWeight: 700, fontSize: 24, color: C.mint, whiteSpace: "pre" }}>{r.ex}</div>
+            <div style={{ position: "absolute", left: COLS[1] - 96, width: 660, top: 0, height: 112, display: "flex", alignItems: "center", fontFamily: F.body, fontWeight: 700, fontSize: 30, color: C.text, lineHeight: 1.3 }}>{r.d}</div>
+            <div style={{ position: "absolute", left: COLS[2] - 96, top: 0, height: 112, display: "flex", alignItems: "center", fontFamily: F.mono, fontWeight: 700, fontSize: 28, color: C.mint, whiteSpace: "pre" }}>{r.ex}</div>
           </div>
         );
       })}
-      <At x={96} y={870} w={1720} step={2} size={28} weight={700}>
+      <At x={96} y={870} w={1720} step={2} size={32} weight={700}>
         <M>true</M> при поверненні просто не дає нових варіантів, а <M>repeat</M> щоразу знову вдається – тому стає точкою повернення для циклів.
       </At>
     </Slide>
@@ -467,7 +467,7 @@ const FailLoop: React.FC = () => {
               {g}
             </span>
           ))}
-          <span style={{ color: C.amber, fontSize: 26, position: "absolute", left: 0, top: 80, whiteSpace: "nowrap" }}>{done ? "member вичерпано → друге речення" : `X = ${ITEMS[k]}`}</span>
+          <span style={{ color: C.amber, fontSize: 30, position: "absolute", left: 0, top: 80, whiteSpace: "nowrap" }}>{done ? "member вичерпано → друге речення" : `X = ${ITEMS[k]}`}</span>
         </div>
       )}
       <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none", opacity: t(2, 0) >= 0 && !done ? 1 : 0 }}>
@@ -486,7 +486,7 @@ const FailLoop: React.FC = () => {
           { text: "true.", at: ITEMS.length * LOOP_GAP + 6, color: C.mint },
         ]}
       />
-      <At x={96} y={860} w={1720} step={3} size={28} weight={700}>
+      <At x={96} y={860} w={1720} step={3} size={32} weight={700}>
         Коли member вичерпає список, перше речення не вдається, і друге – <M>друкувати_все(_)</M> – завершує запит успіхом.
       </At>
     </Slide>
@@ -499,22 +499,22 @@ const FailExplicit: React.FC = () => {
   return (
     <Slide title="fail і відсікання разом">
       <Win x={96} y={190} w={850} h={520} title="Перевірка кількох умов" titleColor={C.amber} p={s(1, 0, POP)}>
-        <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 25, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>
+        <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 29, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>
           {"acceptable(X) :- condition1(X), !.\nacceptable(X) :- condition2(X), !.\nacceptable(_) :- fail."}
         </div>
-        <div style={{ marginTop: 22, fontFamily: F.body, fontWeight: 500, fontSize: 25, lineHeight: 1.45, color: C.text }}>
+        <div style={{ marginTop: 22, fontFamily: F.body, fontWeight: 700, fontSize: 29, lineHeight: 1.45, color: C.text }}>
           Якщо condition1 вдається, відсікання зупиняє пошук. Інакше перевіряється condition2. Якщо обидві не виконуються, fail явно завершує предикат невдачею.
         </div>
       </Win>
       <Win x={974} y={190} w={850} h={520} title="Перше число, більше за 10" titleColor={C.lav} p={s(2, 0, POP)}>
-        <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 25, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>
+        <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 29, lineHeight: 1.6, color: C.mint, whiteSpace: "pre" }}>
           {"перше_більше_10(X, L) :-\n    member(X, L), X > 10, !.\n\n?- перше_більше_10(X, [3, 15, 7, 20]).\nX = 15."}
         </div>
-        <div style={{ marginTop: 22, fontFamily: F.body, fontWeight: 500, fontSize: 25, lineHeight: 1.45, color: C.text }}>
+        <div style={{ marginTop: 22, fontFamily: F.body, fontWeight: 700, fontSize: 29, lineHeight: 1.45, color: C.text }}>
           member перебирає елементи, X &gt; 10 відкидає зайві, а ! зупиняє пошук після першого підходящого.
         </div>
       </Win>
-      <At x={96} y={780} w={1720} step={3} size={28} weight={700}>
+      <At x={96} y={780} w={1720} step={3} size={32} weight={700}>
         Поєднання fail і відсікання дає змогу явно керувати потоком виконання: коли продовжувати пошук, а коли зупинитися.
       </At>
     </Slide>

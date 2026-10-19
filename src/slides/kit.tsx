@@ -72,7 +72,7 @@ export const SyntaxBox: React.FC<{
         transform: `translateY(${(1 - p) * 20}px)`,
       }}
     >
-      <div style={{ fontFamily: F.body, fontWeight: 800, fontSize: 20, letterSpacing: 1, color: C.amber, marginBottom: 8 }}>{title}</div>
+      <div style={{ fontFamily: F.body, fontWeight: 800, fontSize: 25, letterSpacing: 1, color: C.amber, marginBottom: 8 }}>{title}</div>
       <div style={{ fontFamily: F.mono, fontWeight: 600, fontSize: size, lineHeight: 1.4, fontVariantLigatures: "none" }}>
         {lines.map((l, i) => (
           <TemplateLine key={i} line={l} />
@@ -164,7 +164,7 @@ export const Caption: React.FC<{ x: number; y: number; step: number; delay?: num
 }) => {
   const { s } = useSteps();
   return (
-    <div style={{ position: "absolute", left: x, top: y, fontFamily: F.body, fontWeight: 800, fontSize: 26, color, opacity: clamp01(s(step, delay)) }}>
+    <div style={{ position: "absolute", left: x, top: y, fontFamily: F.body, fontWeight: 800, fontSize: 30, color, opacity: clamp01(s(step, delay)) }}>
       {children}
     </div>
   );

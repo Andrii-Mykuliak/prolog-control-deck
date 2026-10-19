@@ -21,13 +21,13 @@ const Unification: React.FC = () => {
       </Lead>
       {checks.map((c, i) => (
         <Win key={c.k} x={96 + i * 590} y={360} w={550} h={250} title={c.k} titleColor={c.color} tag={`0${i + 1}`} p={s(1, i * 12, POP)}>
-          <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 32, color: C.text, marginTop: 20 }}>{c.v}</div>
+          <div style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 38, color: C.text, marginTop: 30 }}>{c.v}</div>
         </Win>
       ))}
-      <At x={96} y={680} w={1720} step={2} size={30} weight={700}>
+      <At x={96} y={680} w={1720} step={2} size={34} weight={700}>
         Якщо в запиті є <A c={C.amber}>вільні змінні</A>, Prolog шукає їхні значення, за яких ціль досяжна.
       </At>
-      <At x={96} y={760} w={1720} step={3} size={30} weight={700}>
+      <At x={96} y={760} w={1720} step={3} size={34} weight={700}>
         Якщо вільних змінних немає, відповідь – лише результат уніфікації: <M>true</M> або <M c={C.red}>false</M>.
       </At>
     </Slide>
@@ -55,7 +55,7 @@ const Stages: React.FC = () => {
         const hot = pulse(t(1, 30 + i * ST_GAP), 8, 16);
         return (
           <Win key={st.t} x={150 + col * 560} y={230 + row * 330} w={500} h={260} title={st.t} titleColor={st.color} tag={`0${i + 1}`} p={s(1, i * 8, POP)} glow={hot} border={hot > 0.3 ? st.color : C.cream}>
-            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 28, color: C.text, lineHeight: 1.4, marginTop: 14 }}>{st.d}</div>
+            <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 32, color: C.text, lineHeight: 1.4, marginTop: 14 }}>{st.d}</div>
           </Win>
         );
       })}
@@ -72,7 +72,7 @@ const Stages: React.FC = () => {
         ))}
         <path d={`M ${1710} ${490} L ${1710} ${540} L ${400} ${540} L ${400} ${552}`} fill="none" stroke={C.cream} strokeWidth={2.5} strokeDasharray="6 6" />
       </svg>
-      <At x={96} y={900} w={1720} step={2} size={30} weight={700}>
+      <At x={96} y={900} w={1720} step={2} size={34} weight={700}>
         Якщо на будь-якому етапі зіставлення не вдається, Prolog повертається до останньої точки вибору – це і є бектрекінг.
       </At>
     </Slide>
@@ -143,10 +143,10 @@ const UnifyExample: React.FC = () => {
           <React.Fragment key={i}>
             <Cell x={X0 + i * 300} y={360} text={c.fact} color={C.mint} p={s(1, i * 6, POP)} glow={hot} />
             <Cell x={X0 + i * 300} y={480} text={c.query} color={i === 2 ? C.amber : C.cream} p={s(1, 6 + i * 6, POP)} glow={hot} />
-            <div style={{ position: "absolute", left: X0 + i * 300, width: 220, top: 448, textAlign: "center", fontFamily: F.mono, fontSize: 26, color: c.ok ? C.mint : C.red, opacity: clamp01(s(1, 26 + i * MATCH_GAP)) }}>
+            <div style={{ position: "absolute", left: X0 + i * 300, width: 220, top: 448, textAlign: "center", fontFamily: F.mono, fontSize: 30, color: c.ok ? C.mint : C.red, opacity: clamp01(s(1, 26 + i * MATCH_GAP)) }}>
               {i === 2 ? "↕" : "="}
             </div>
-            <div style={{ position: "absolute", left: X0 + i * 300 - 20, width: 260, top: 580, textAlign: "center", fontFamily: F.body, fontWeight: 600, fontSize: 22, color: C.dim, opacity: clamp01(s(1, 30 + i * MATCH_GAP)) }}>
+            <div style={{ position: "absolute", left: X0 + i * 300 - 20, width: 260, top: 580, textAlign: "center", fontFamily: F.body, fontWeight: 700, fontSize: 27, color: C.dim, opacity: clamp01(s(1, 30 + i * MATCH_GAP)) }}>
               {c.note}
             </div>
           </React.Fragment>
@@ -156,7 +156,7 @@ const UnifyExample: React.FC = () => {
         X = сметана
       </div>
       <Win x={96} y={680} w={1728} title="Коли уніфікація не вдається" titleColor={C.red} p={s(2, 0, POP)} pad="12px 22px">
-        <div style={{ display: "flex", gap: 80, fontFamily: F.mono, fontWeight: 700, fontSize: 28, lineHeight: 1.6 }}>
+        <div style={{ display: "flex", gap: 80, fontFamily: F.mono, fontWeight: 700, fontSize: 31, lineHeight: 1.6 }}>
           <div>
             <span style={{ color: C.text }}>?- любить(пес, X).</span>
             <span style={{ color: C.red }}>{"  кіт ≠ пес"}</span>
@@ -232,13 +232,13 @@ const Backtracking: React.FC = () => {
             key={i}
             style={{
               position: "absolute",
-              left: n.kind === "start" ? n.x - 210 : n.x + 30,
+              left: n.kind === "start" ? n.x - 200 : n.x + 30,
               top: n.y - 20,
               padding: "4px 12px",
               background: n.kind === "bad" ? "#ea9999" : n.kind === "sol" ? C.mint : C.lav,
               color: "#14120a",
               fontFamily: F.head,
-              fontSize: 22,
+              fontSize: 26,
               opacity: clamp01(s(1, 0)),
             }}
           >
@@ -248,13 +248,13 @@ const Backtracking: React.FC = () => {
       )}
       <Win x={1340} y={330} w={480} h={300} title="стек точок повернення" titleColor={C.amber} p={s(1, 0, POP)}>
         {stack.map((st) => (
-          <div key={st} style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 22, color: C.amber, padding: "8px 12px", border: `2px solid ${C.amber}`, borderRadius: 4 }}>
+          <div key={st} style={{ fontFamily: F.mono, fontWeight: 700, fontSize: 27, color: C.amber, padding: "8px 12px", border: `2px solid ${C.amber}`, borderRadius: 4 }}>
             {st}
           </div>
         ))}
-        {started && stack.length === 0 && <div style={{ fontFamily: F.body, fontSize: 22, color: C.dim }}>порожній: пошук завершено</div>}
+        {started && stack.length === 0 && <div style={{ fontFamily: F.body, fontSize: 27, color: C.dim }}>порожній: пошук завершено</div>}
       </Win>
-      <At x={96} y={880} w={1720} step={2} size={28} weight={700}>
+      <At x={96} y={880} w={1720} step={2} size={32} weight={700}>
         Пошук іде вглиб; у точках розвилки Prolog запам’ятовує альтернативи, а при поверненні відновлює значення змінних, які вони мали в цій точці.
       </At>
     </Slide>
@@ -288,10 +288,10 @@ const BtExample: React.FC = () => {
           { text: "X = сир.", at: 70 },
         ]}
       />
-      <At x={96} y={580} w={1720} step={2} size={30} weight={700}>
+      <At x={96} y={580} w={1720} step={2} size={34} weight={700}>
         Перша відповідь – <M>X = сметана</M>. Після «;» Prolog повертається до точки вибору й пробує наступне речення: <M>X = сир</M>.
       </At>
-      <At x={96} y={700} w={1720} step={3} size={30} weight={700}>
+      <At x={96} y={700} w={1720} step={3} size={34} weight={700}>
         Автоматичний перебір із поверненнями – головна перевага Prolog: програмістові не потрібні явні цикли для перебору варіантів.
       </At>
     </Slide>
@@ -316,8 +316,8 @@ const GoalTree: React.FC = () => {
       <Code
         x={96}
         y={180}
-        size={26}
-        lh={38}
+        size={30}
+        lh={44}
         step={0}
         stagger={4}
         code={`
@@ -364,7 +364,7 @@ const GoalTree: React.FC = () => {
                 borderRadius: 4,
                 fontFamily: F.mono,
                 fontWeight: 700,
-                fontSize: 28,
+                fontSize: 31,
                 color: on ? C.mint : C.text,
                 boxShadow: hot > 0.02 ? `0 0 ${26 * hot}px ${C.mint}` : undefined,
                 opacity: clamp01(s(1, 10 + i * 6, POP)),
@@ -376,7 +376,7 @@ const GoalTree: React.FC = () => {
           </React.Fragment>
         );
       })}
-      <At x={96} y={880} w={1720} step={2} size={28} weight={700}>
+      <At x={96} y={880} w={1720} step={2} size={32} weight={700}>
         Корінь – запит, листки – знайдені рішення; номери показують порядок, у якому бектрекінг обходить дерево: зверху вниз за текстом програми.
       </At>
     </Slide>
@@ -401,7 +401,7 @@ const BtRules: React.FC = () => {
         return (
           <div key={i} style={{ position: "absolute", left: 110, top: 210 + i * 140, width: 1700, display: "flex", gap: 30, alignItems: "flex-start", opacity: clamp01(a), transform: `translateX(${(1 - a) * -30}px)` }}>
             <div style={{ fontFamily: F.pixel, fontSize: 28, color: [C.pink, C.lav, C.mint, C.amber, C.pink][i], marginTop: 6 }}>{`0${i + 1}`}</div>
-            <div style={{ fontFamily: F.body, fontWeight: 500, fontSize: 32, lineHeight: 1.4, color: C.text }}>{r}</div>
+            <div style={{ fontFamily: F.body, fontWeight: 700, fontSize: 34, lineHeight: 1.4, color: C.text }}>{r}</div>
           </div>
         );
       })}

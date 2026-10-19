@@ -104,9 +104,11 @@ const Search: React.FC<{ x: number; order: number[]; title: string; color: strin
           return <circle key={i} cx={n.x} cy={n.y} r={sol ? 16 : 13} fill={on ? (sol ? C.mint : color) : C.panel} stroke={on ? (sol ? C.mint : color) : C.faint} strokeWidth={2.5} />;
         })}
       </svg>
-      <div style={{ position: "absolute", left: 20, bottom: 12, fontFamily: F.mono, fontWeight: 700, fontSize: 22, color: C.dim }}>
-        кроків пошуку: <span style={{ color }}>{seen.length}</span>
-        <span style={{ marginLeft: 26, color: C.mint, opacity: seen.includes(SOLUTION) ? 1 : 0 }}>відповідь: R = 1</span>
+      <div style={{ position: "absolute", left: 20, right: 20, bottom: 12, display: "flex", justifyContent: "space-between", fontFamily: F.mono, fontWeight: 700, fontSize: 28, color: C.dim }}>
+        <span>
+          кроків: <span style={{ color }}>{seen.length}</span>
+        </span>
+        <span style={{ color: C.mint, opacity: seen.includes(SOLUTION) ? 1 : 0 }}>R = 1</span>
       </div>
     </Win>
   );
@@ -150,7 +152,7 @@ const QuoteSlide: React.FC = () => {
       <At x={110} y={890} step={1} delay={24} size={30} weight={400} color={C.dim} font={F.mono}>
         Robert Kowalski
       </At>
-      <At x={110} y={936} w={1600} step={1} delay={36} size={26} weight={400} color={C.dim}>
+      <At x={110} y={936} w={1600} step={1} delay={36} size={30} weight={700} color={C.dim}>
         «Algorithm = Logic + Control», Communications of the ACM, 1979
       </At>
     </Slide>
