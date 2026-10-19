@@ -236,3 +236,87 @@ export const Term: React.FC<{
   );
 };
 
+
+/** Shared title slide: lecture number, cream lead line, pink headline, plaque, synthwave sun, LOGICAL PROGRAMMING badge. */
+export const RetroTitle: React.FC<{ lecture: string; lead: string; lines: string[]; plaque: string; t: number; s: (step: number, delay?: number, cfg?: object) => number }> = ({
+  lecture,
+  lead,
+  lines,
+  plaque,
+  t,
+  s,
+}) => {
+  const letters = (str: string, base: number, step = 1.3) =>
+    str.split("").map((ch, i) => {
+      const p = s(0, base + i * step);
+      return (
+        <span key={i} style={{ display: "inline-block", opacity: p, transform: `translateY(${(1 - p) * 60}px)`, whiteSpace: "pre" }}>
+          {ch}
+        </span>
+      );
+    });
+  return (
+    <>
+      <Stars t={t} n={60} y0={80} h={520} opacity={clamp01(s(0, 4))} />
+      <SynthSun cx={1450} cy={600} r={190} p={s(0, 10)} t={t} id="tsun" />
+      <Planet x={1110} y={330} r={38} color={C.lav} p={s(0, 30, { damping: 13, stiffness: 170, mass: 0.9 })} />
+      <GridFloor y0={600} t={t} p={s(0, 6)} vx={1450} />
+      <div
+        style={{
+          position: "absolute",
+          right: 96,
+          top: 96,
+          textAlign: "right",
+          fontFamily: F.head,
+          fontSize: 62,
+          lineHeight: 1.12,
+          color: C.pink,
+          textShadow: "0 0 24px rgba(246,115,169,0.5)",
+        }}
+      >
+        <div>{letters("LOGICAL", 20, 1.6)}</div>
+        <div>{letters("PROGRAMMING", 30, 1.6)}</div>
+      </div>
+      <div style={{ position: "absolute", left: 110, top: 130, fontFamily: F.pixel, fontSize: 30, color: C.lav, opacity: clamp01(s(0, 6)) }}>{lecture}</div>
+      <div style={{ position: "absolute", left: 104, top: 200, fontFamily: F.title, fontWeight: 700, fontSize: 64, lineHeight: 1.1, color: C.cream }}>
+        {letters(lead, 12)}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 100,
+          top: 286,
+          fontFamily: F.title,
+          fontWeight: 800,
+          fontSize: 96,
+          lineHeight: 1.04,
+          color: C.pink,
+          textShadow: "0 0 26px rgba(246,115,169,0.45)",
+          letterSpacing: 1,
+        }}
+      >
+        {lines.map((l, i) => (
+          <div key={l}>{letters(l, 30 + i * 12)}</div>
+        ))}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          left: 110,
+          top: 520,
+          padding: "10px 22px",
+          background: C.lav,
+          color: "#14120a",
+          fontFamily: F.mono,
+          fontWeight: 700,
+          fontSize: 30,
+          borderRadius: 2,
+          opacity: clamp01(s(0, 64)),
+          transform: `translateX(${(1 - s(0, 64)) * -30}px)`,
+        }}
+      >
+        {plaque}
+      </div>
+    </>
+  );
+};

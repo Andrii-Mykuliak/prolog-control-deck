@@ -4,61 +4,15 @@ import { mix, POP, SlideDef, useSteps } from "../deck/steps";
 import { At, Slide } from "../deck/ui";
 import { AuthorBlock } from "../deck/Author";
 import { clamp01, useClock } from "./common";
-import { GridFloor, Stars, SynthSun, Win } from "./retro";
+import { GridFloor, RetroTitle, Stars, SynthSun, Win } from "./retro";
 
 const TitleSlide: React.FC = () => {
   const { s, frame, fps } = useSteps();
   const clock = useClock();
   const t = Math.max(frame / fps, clock);
-  const letters = (str: string, base: number) =>
-    str.split("").map((ch, i) => {
-      const p = s(0, base + i * 1.2);
-      return (
-        <span key={i} style={{ display: "inline-block", opacity: p, transform: `translateY(${(1 - p) * 60}px)`, whiteSpace: "pre" }}>
-          {ch}
-        </span>
-      );
-    });
-  const bar = (y: number, x: number, w: number, d: number) => (
-    <div style={{ position: "absolute", left: x, top: y, width: w * clamp01(s(0, d)), height: 16, background: C.cream }} />
-  );
   return (
     <Slide>
-      <Stars t={t} n={50} y0={80} h={380} opacity={clamp01(s(0, 4))} />
-      <SynthSun cx={960} cy={560} r={150} p={s(0, 10)} t={t} id="tsun" />
-      <GridFloor y0={560} t={t} p={s(0, 6)} vx={960} />
-      {bar(158, 46, 300, 16)}
-      {bar(158, 1574, 300, 16)}
-      {bar(276, 46, 180, 22)}
-      {bar(276, 1694, 180, 22)}
-      <div style={{ position: "absolute", left: 0, top: 110, width: 1920, textAlign: "center", fontFamily: F.head, fontSize: 116, lineHeight: 1.06, color: C.pink, textShadow: "0 0 28px rgba(246,115,169,0.5)" }}>
-        <div>{letters("LOGICAL", 8)}</div>
-        <div>{letters("PROGRAMMING", 18)}</div>
-      </div>
-      <At x={0} y={78} w={1920} step={0} delay={4} size={26} weight={400} color={C.lav} font={F.pixel} align="center">
-        ЛЕКЦІЯ 11
-      </At>
-      <div
-        style={{
-          position: "absolute",
-          left: 560,
-          top: 470,
-          width: 800,
-          padding: "14px 20px",
-          background: C.lav,
-          color: "#14120a",
-          fontFamily: F.title,
-          fontWeight: 700,
-          fontSize: 36,
-          textAlign: "center",
-          lineHeight: 1.25,
-          opacity: clamp01(s(0, 46)),
-          transform: `translateY(${(1 - s(0, 46)) * 20}px)`,
-        }}
-      >
-        Керування виконанням
-        <br />у логічному програмуванні
-      </div>
+      <RetroTitle lecture="ЛЕКЦІЯ 11" lead="Керування виконанням" lines={["у логічному", "програмуванні"]} plaque="уніфікація → бектрекінг → відсікання" t={t} s={s} />
       <AuthorBlock />
     </Slide>
   );
