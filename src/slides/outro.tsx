@@ -4,7 +4,7 @@ import { C, F } from "../deck/theme";
 import { SlideDef, useSteps } from "../deck/steps";
 import { Backdrop, WindowFrame } from "../deck/ui";
 import { clamp01, useClock } from "./common";
-import { GridFloor, rnd, Rocket, SynthSun, Win } from "./retro";
+import { GridFloor, Stars, SynthSun, Win } from "./retro";
 
 const HORIZON = 650;
 const VX = 960;
@@ -40,21 +40,21 @@ const Mountains: React.FC<{ p: number }> = ({ p }) => {
 /* A depth-first search drawn in the sky: the cursor walks the tree, ! prunes, leaves light up as solutions or fail. */
 type SNode = { x: number; y: number; parent: number; leaf?: "ok" | "fail" };
 const SN: SNode[] = [
-  { x: 960, y: 360, parent: -1 },
-  { x: 560, y: 440, parent: 0 },
-  { x: 1360, y: 440, parent: 0 },
-  { x: 360, y: 520, parent: 1 },
-  { x: 760, y: 520, parent: 1 },
-  { x: 1160, y: 520, parent: 2 },
-  { x: 1560, y: 520, parent: 2 },
-  { x: 260, y: 600, parent: 3, leaf: "fail" },
-  { x: 460, y: 600, parent: 3, leaf: "ok" },
-  { x: 660, y: 600, parent: 4, leaf: "ok" },
-  { x: 860, y: 600, parent: 4, leaf: "fail" },
-  { x: 1060, y: 600, parent: 5, leaf: "fail" },
-  { x: 1260, y: 600, parent: 5, leaf: "ok" },
-  { x: 1460, y: 600, parent: 6, leaf: "ok" },
-  { x: 1660, y: 600, parent: 6, leaf: "ok" },
+  { x: 960, y: 340, parent: -1 },
+  { x: 560, y: 410, parent: 0 },
+  { x: 1360, y: 410, parent: 0 },
+  { x: 360, y: 470, parent: 1 },
+  { x: 760, y: 470, parent: 1 },
+  { x: 1160, y: 470, parent: 2 },
+  { x: 1560, y: 470, parent: 2 },
+  { x: 260, y: 530, parent: 3, leaf: "fail" },
+  { x: 460, y: 530, parent: 3, leaf: "ok" },
+  { x: 660, y: 530, parent: 4, leaf: "ok" },
+  { x: 860, y: 530, parent: 4, leaf: "fail" },
+  { x: 1060, y: 530, parent: 5, leaf: "fail" },
+  { x: 1260, y: 530, parent: 5, leaf: "ok" },
+  { x: 1460, y: 530, parent: 6, leaf: "ok" },
+  { x: 1660, y: 530, parent: 6, leaf: "ok" },
 ];
 const ORDER = [0, 1, 3, 7, 8, 2, 5, 11, 12, 6, 13];
 const PRUNE_AT: Record<number, number[]> = { 8: [4, 9, 10], 13: [14] };
@@ -128,9 +128,6 @@ const Outro: React.FC = () => {
   const credit = s(0, 100);
   const sweep = interpolate(f, [110, 160], [-30, 130], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
-  const launch = (t % 5.2) / 5.2;
-  const ry = interpolate(launch, [0, 1], [HORIZON + 60, -260]);
-  const rx = VX + Math.sin(launch * Math.PI * 2) * 40;
 
   const typed = Math.floor(Math.max(0, f - 20) / 3);
   let used = 0;
@@ -140,25 +137,10 @@ const Outro: React.FC = () => {
       <Backdrop />
       <AbsoluteFill style={{ background: `radial-gradient(ellipse at 50% 55%, rgba(154,68,150,0.28) 0%, rgba(41,38,26,0) 60%)`, opacity: scene }} />
       <SearchSky t={t} p={s(0, 30)} />
-      <SynthSun cx={VX} cy={HORIZON} r={220} p={s(0, 10)} t={t} id="osun" />
+      <Stars t={t} n={70} y0={80} h={HORIZON - 120} opacity={scene * 0.8} />
+      <SynthSun cx={VX} cy={HORIZON} r={150} p={s(0, 10)} t={t} id="osun" />
       <Mountains p={s(0, 24)} />
       <GridFloor y0={HORIZON} t={t * 2.2} p={scene} vx={VX} />
-      {launch > 0.02 && launch < 0.98 && (
-        <>
-          <svg width={1920} height={1080} style={{ position: "absolute", left: 0, top: 0, pointerEvents: "none" }}>
-            {Array.from({ length: 14 }, (_, k) => {
-              const l2 = launch - k * 0.012;
-              if (l2 <= 0) {
-                return null;
-              }
-              const yy = interpolate(l2, [0, 1], [HORIZON + 60, -260]) + 70;
-              const xx = VX + Math.sin(l2 * Math.PI * 2) * 40;
-              return <circle key={k} cx={xx + (rnd(k + f) - 0.5) * 10} cy={yy} r={10 - k * 0.6} fill={k % 2 ? C.amber : C.pink} opacity={0.6 - k * 0.04} />;
-            })}
-          </svg>
-          <Rocket x={rx} y={ry} s={0.7} flame={0.5 + 0.5 * Math.sin(f * 0.9)} />
-        </>
-      )}
       <div style={{ position: "absolute", left: 0, top: 110, width: 1920, textAlign: "center", fontFamily: F.pixel, fontSize: 68, lineHeight: 1.45, color: C.pink, textShadow: `0 0 24px rgba(246,115,169,0.65), 4px 4px 0 #14120a` }}>
         {THANKS.map((line, li) => {
           const start = used;
